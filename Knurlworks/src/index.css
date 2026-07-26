@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   DESIGN TOKENS
+   Palette: matte black concrete + bone white + toxic-lime + blood-orange
+   ========================================================================== */
+:root,
+[data-theme='dark'] {
+  --color-bg: 14 14 15; /* #0E0E0F */
+  --color-bg-alt: 23 23 26; /* #17171A */
+  --color-bg-raised: 30 30 33; /* #1E1E21 */
+  --color-fg: 242 240 234; /* #F2F0EA */
+  --color-muted: 154 152 146; /* #9A9892 */
+  --color-line: 42 42 45; /* #2A2A2D */
+  --color-accent: 201 255 61; /* #C9FF3D toxic lime */
+  --color-accent-2: 255 75 43; /* #FF4B2B blood orange */
+  --grain-opacity: 0.05;
+}
+
+[data-theme='light'] {
+  --color-bg: 242 240 234; /* #F2F0EA bone/paper */
+  --color-bg-alt: 231 228 219; /* #E7E4DB */
+  --color-bg-raised: 255 255 255;
+  --color-fg: 16 16 17; /* #101011 */
+  --color-muted: 90 88 84; /* #5A5854 */
+  --color-line: 209 205 195; /* #D1CDC3 */
+  --color-accent: 90 128 0; /* #5A8000 darker lime, AA on light */
+  --color-accent-2: 200 52 22; /* #C83416 */
+  --grain-opacity: 0.035;
+}
+
+* {
+  border-color: rgb(var(--color-line));
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+[data-theme='light'] html,
+html[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-fg));
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Film-grain texture overlay, purely decorative */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   SIGNATURE ELEMENT: hazard stripe divider
+   A repeating diagonal warning-tape motif used only at deliberate section
+   breaks — echoes gym hazard tape / loading-dock caution signage.
+   ========================================================================== */
+.hazard-stripe {
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgb(var(--color-accent)) 0,
+    rgb(var(--color-accent)) 14px,
+    rgb(var(--color-bg)) 14px,
+    rgb(var(--color-bg)) 28px
+  );
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100%;
+  z-index: 100;
+  background: rgb(var(--color-accent));
+  color: #0e0e0f;
+  padding: 0.75rem 1.25rem;
+  font-weight: 700;
+  border-radius: 2px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Consistent visible focus ring across the app */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgb(var(--color-accent));
+  color: #0e0e0f;
+}
+
+/* Scrollbar (webkit) — thin, on-brand */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-bg));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-line));
+  border-radius: 999px;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Utility: tracked eyebrow labels used throughout (tag-copy voice) */
+.eyebrow {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgb(var(--color-muted));
+}
+
+.font-display {
+  font-family: 'Anton', Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Marquee track used in the hero ticker */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 22s linear infinite;
+}

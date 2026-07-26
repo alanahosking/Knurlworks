@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://riotwear.example.com/sitemap.xml

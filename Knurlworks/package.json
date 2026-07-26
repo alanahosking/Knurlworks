@@ -1,0 +1,44 @@
+{
+  "name": "riotwear",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "RIOTWEAR — alternative gymwear for people who lift, lurk, and don't blend in.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "postbuild": "node scripts/copy-404.mjs",
+    "build:gh-pages": "cross-env GH_PAGES=true npm run build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "react-helmet-async": "^2.0.5",
+    "framer-motion": "^11.5.4",
+    "lucide-react": "^0.445.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.10.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.11",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.6",
+    "vite-plugin-sitemap": "^0.7.1"
+  }
+}
