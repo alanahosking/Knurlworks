@@ -5,6 +5,10 @@ import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // GitHub Pages project sites are served from /<repo-name>/, not the domain
+  // root. GH_PAGES=true is set by the deploy workflow; local `vite dev` and
+  // other hosts (Vercel/Netlify, which serve from the root) are unaffected.
+  base: process.env.GH_PAGES ? '/gymwear-brand/' : '/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

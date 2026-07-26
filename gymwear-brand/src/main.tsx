@@ -18,7 +18,7 @@ createRoot(rootElement).render(
     <HelmetProvider>
       <ThemeProvider>
         <CartProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <App />
           </BrowserRouter>
         </CartProvider>

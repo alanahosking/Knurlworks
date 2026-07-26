@@ -145,7 +145,29 @@ The build output in `dist/` is a static site and can be hosted anywhere that ser
    ```
    so client-side routes don't 404 on refresh.
 
-### Static host / your own server (e.g. Nginx, S3+CloudFront)
+### GitHub Pages
+GitHub Pages has no server and does not run a build step for you, so pushing the raw project (this `src/` folder as-is) will 404 — it needs the *built* `dist/` output, and because a project page is served at `https://username.github.io/gymwear-brand/` (not the domain root), the build must know that subpath.
+
+This repo is already set up for it:
+- `vite.config.ts` sets `base: '/gymwear-brand/'` whenever the `GH_PAGES` env var is set, so asset URLs resolve correctly under the subpath. Update this string first if your repo is ever renamed.
+- `src/main.tsx` passes `basename={import.meta.env.BASE_URL}` to `BrowserRouter`, so in-app links (`/shop`, `/about`) resolve under `/gymwear-brand/...` too.
+- `scripts/copy-404.mjs` runs after every build and copies `index.html` to `404.html`. GitHub Pages serves `404.html` for any path it can't find as a real file (e.g. a deep link to `/shop`); since that file is the same app, React Router still picks up the correct route from the URL.
+
+**Recommended: automatic deploys via GitHub Actions** (already included at `.github/workflows/deploy.yml`):
+1. Push this repo to GitHub as `gymwear-brand`.
+2. In the repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. Push to `main` (or run the workflow manually from the **Actions** tab). It builds with `npm run build:gh-pages` and deploys `dist/` automatically.
+4. Your site will be live at `https://<your-username>.github.io/gymwear-brand/`.
+
+**Manual alternative**, if you'd rather not use Actions:
+```bash
+npm install -D gh-pages
+npm run build:gh-pages
+npx gh-pages -d dist
+```
+Then in **Settings → Pages**, set **Source** to the `gh-pages` branch.
+
+
 1. Run `npm run build` locally or in CI.
 2. Upload the contents of `dist/` to your host/bucket.
 3. Configure a catch-all rewrite to `index.html` for any path that isn't a real file (SPA fallback). For Nginx:
