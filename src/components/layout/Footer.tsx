@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Twitch } from 'lucide-react';
+import { Logo } from '@/components/ui/Logo';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -22,9 +23,7 @@ export function Footer() {
       <div className="hazard-stripe" />
       <div className="container-wide grid grid-cols-1 gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
         <div>
-          <p className="font-display text-3xl">
-            RIOT<span className="text-accent">WEAR</span>
-          </p>
+          <Logo className="text-3xl" />
           <p className="mt-4 max-w-xs text-sm text-muted">
             Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard, never restocked twice.
           </p>

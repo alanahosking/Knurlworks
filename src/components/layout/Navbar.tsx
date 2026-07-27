@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { useCart } from '@/context/CartContext';
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
+import { Logo } from '@/components/ui/Logo';
 
 const links = [
   { label: 'Home', to: '/' },
@@ -33,8 +34,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 bg-bg/90 backdrop-blur-md">
       <AnnouncementBar />
       <div className="container-wide flex h-20 items-center justify-between border-b border-line">
-        <NavLink to="/" className="font-display text-2xl tracking-tightest" aria-label="RIOTWEAR home">
-          RIOT<span className="text-accent">WEAR</span>
+        <NavLink to="/" aria-label="KNURLWORKS home">
+          <Logo className="text-2xl" />
         </NavLink>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
