@@ -14,7 +14,7 @@ export function Logo({ className }: LogoProps) {
     <span
       role="img"
       aria-label="KNURLWORKS"
-      className={cn('inline-flex items-center gap-[0.05em] font-body font-extrabold uppercase tracking-tight text-fg', className)}
+      className={cn('inline-flex items-center gap-[0.12em] font-body font-extrabold uppercase tracking-tight text-fg', className)}
     >
       <span aria-hidden="true">KNURL</span>
       <svg viewBox="0 0 180 130" className="h-[0.72em] w-auto shrink-0" aria-hidden="true">
