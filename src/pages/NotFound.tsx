@@ -6,7 +6,7 @@ export default function NotFound() {
     <>
       <SEO
         title="Page Not Found"
-        description="This page doesn't exist. Head back to RIOTWEAR's home page or shop."
+        description="This page doesn't exist. Head back to KnurlWorks' home page or shop."
         path="/404"
       />
       <div className="container-wide flex min-h-[70vh] flex-col items-center justify-center gap-6 text-center">

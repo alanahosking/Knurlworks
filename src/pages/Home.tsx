@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <SEO
         title="Alternative Gymwear for the Underground Lifter"
-        description="RIOTWEAR is alternative gymwear for lifters who don't blend in. Heavyweight tees, technical training gear and streetwear built to survive PRs."
+        description="KnurlWorks is alternative gymwear for lifters who don't blend in. Heavyweight tees, technical training gear and streetwear built to survive PRs."
         path="/"
       />
       <Hero />

@@ -6,7 +6,7 @@ interface SEOProps {
   path: string;
 }
 
-const SITE_NAME = 'RIOTWEAR';
+const SITE_NAME = 'KnurlWorks';
 const SITE_URL = 'https://knurlworks.com.au';
 
 export function SEO({ title, description, path }: SEOProps) {

@@ -75,7 +75,7 @@ export default function Shop() {
     <>
       <SEO
         title="Shop Alternative Gymwear"
-        description="Browse RIOTWEAR's full catalog of heavyweight tees, hoodies, shorts and leggings for men, women, and unisex fits."
+        description="Browse KnurlWorks' full catalog of heavyweight tees, hoodies, shorts and leggings for men, women, and unisex fits."
         path="/shop"
       />
 
