@@ -4,7 +4,7 @@
 
 /* ==========================================================================
    DESIGN TOKENS
-   Palette: matte black concrete + bone white + toxic-lime + blood-orange
+   Palette: matte black concrete + bone white + dusty rose + blood-orange
    ========================================================================== */
 :root,
 [data-theme='dark'] {
@@ -14,7 +14,7 @@
   --color-fg: 242 240 234; /* #F2F0EA */
   --color-muted: 154 152 146; /* #9A9892 */
   --color-line: 42 42 45; /* #2A2A2D */
-  --color-accent: 201 255 61; /* #C9FF3D toxic lime */
+  --color-accent: 184 150 135; /* #B89687 */
   --color-accent-2: 255 75 43; /* #FF4B2B blood orange */
   --grain-opacity: 0.05;
 }
@@ -26,7 +26,7 @@
   --color-fg: 16 16 17; /* #101011 */
   --color-muted: 90 88 84; /* #5A5854 */
   --color-line: 209 205 195; /* #D1CDC3 */
-  --color-accent: 90 128 0; /* #5A8000 darker lime, AA on light */
+  --color-accent: 112 80 66; /* #705042 darkened #B89687, AA on light */
   --color-accent-2: 200 52 22; /* #C83416 */
   --grain-opacity: 0.035;
 }

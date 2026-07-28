@@ -6,24 +6,15 @@ export function Hero() {
     <section className="relative overflow-hidden border-b border-line">
       <div className="container-wide grid grid-cols-1 items-center gap-10 py-16 md:grid-cols-2 md:py-24">
         <div>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="eyebrow mb-6"
-          >
-            Est. underground — season 04
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-balance text-[15vw] leading-[0.86] sm:text-7xl md:text-8xl"
+            className="font-display text-balance text-[10vw] leading-[0.95] sm:text-5xl md:text-6xl"
           >
-            TRAIN
+            Strength looks good on you.
             <br />
-            <span className="text-accent">LOUD.</span>
+            <span className="text-accent">We just make sure your clothes do too.</span>
           </motion.h1>
 
           <motion.p
@@ -32,8 +23,11 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-6 max-w-md text-base leading-relaxed text-muted"
           >
-            Gymwear for lifters who don't dress for the mirror photo, they dress for the ones who show up early
-            and leave last. Heavyweight fabric, hazard-cut graphics, zero apologies.
+            This is KnurlWorks.
+            <br />
+            Built for the lift. Cut for the lifter.
+            <br />
+            Gymwear for people who want to feel as strong on the outside as they are on the inside.
           </motion.p>
 
           <motion.div
@@ -43,7 +37,7 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center gap-4"
           >
             <Button as="link" to="/shop">
-              Shop the drop
+              shop
             </Button>
             <Button as="link" to="/about" variant="secondary">
               Our story

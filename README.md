@@ -13,7 +13,7 @@ RIOTWEAR leans into gym-and-streetwear "alt" culture rather than the soft-pastel
 | Token | Value | Use |
 |---|---|---|
 | `--color-bg` | `#0E0E0F` (dark) / `#F2F0EA` (light) | Page background |
-| `--color-accent` | `#C9FF3D` toxic lime | Primary CTAs, active states |
+| `--color-accent` | `#B89687` (dark) / `#705042` (light) | Primary CTAs, active states |
 | `--color-accent-2` | `#FF4B2B` blood orange | Sale tags, alerts |
 | Display type | Anton | Condensed, poster-style headlines |
 | Body type | Inter | Long-form readability |

@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 
 const commitments = [
-  'We design in men\u2019s, women\u2019s, and unisex blocks — never one pattern stretched three ways.',
-  'Every heavyweight tee and hoodie is sample-tested by our own lifting group before it goes into production.',
-  'We run limited batches. When a drop sells out, it\u2019s archived, not reprinted at a lower quality.',
-  'No stock photography. Every product on this site is drafted the way our pattern makers actually see it.',
+  'Every heavyweight tee is sample-tested by our own lifting group before it goes into production.',
+  'We run limited batches. When a drop sells out, it’s archived, not reprinted at a lower quality.',
 ];
 
 export function Values() {
