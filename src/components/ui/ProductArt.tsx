@@ -7,7 +7,7 @@ interface ProductArtProps {
 }
 
 /**
- * RIOTWEAR renders products as mono-line tech-pack schematics rather than
+ * KnurlWorks renders products as mono-line tech-pack schematics rather than
  * lifestyle photography — the same drafting language brands use on cut
  * sheets, tinted with the product's colorway. It's the site's signature
  * illustration system, applied consistently across every card and detail

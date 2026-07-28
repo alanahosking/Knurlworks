@@ -8,7 +8,7 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
-const STORAGE_KEY = 'riotwear-theme';
+const STORAGE_KEY = 'knurlworks-theme';
 
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'dark';

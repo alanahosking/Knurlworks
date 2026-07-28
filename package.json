@@ -1,9 +1,9 @@
 {
-  "name": "riotwear",
+  "name": "knurlworks",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "RIOTWEAR — alternative gymwear for people who lift, lurk, and don't blend in.",
+  "description": "KnurlWorks — alternative gymwear for people who lift, lurk, and don't blend in.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

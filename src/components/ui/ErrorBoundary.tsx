@@ -18,7 +18,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     // In production this would report to an error-tracking service.
-    console.error('RIOTWEAR crashed:', error, info.componentStack);
+    console.error('KnurlWorks crashed:', error, info.componentStack);
   }
 
   render() {

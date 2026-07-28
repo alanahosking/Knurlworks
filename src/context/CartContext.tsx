@@ -14,7 +14,7 @@ interface CartContextValue {
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
-const STORAGE_KEY = 'riotwear-cart';
+const STORAGE_KEY = 'knurlworks-cart';
 
 function readStoredLines(): CartLine[] {
   if (typeof window === 'undefined') return [];

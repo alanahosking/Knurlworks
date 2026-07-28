@@ -1,4 +1,4 @@
-# RIOTWEAR
+# KnurlWorks
 
 Alternative gymwear for lifters who don't blend in. A production-ready, fully responsive marketing + shop site built with React, TypeScript, and Tailwind CSS.
 
@@ -8,7 +8,7 @@ Alternative gymwear for lifters who don't blend in. A production-ready, fully re
 
 ## Design direction
 
-RIOTWEAR leans into gym-and-streetwear "alt" culture rather than the soft-pastel look of mainstream activewear brands:
+KnurlWorks leans into gym-and-streetwear "alt" culture rather than the soft-pastel look of mainstream activewear brands:
 
 | Token | Value | Use |
 |---|---|---|
@@ -37,7 +37,7 @@ RIOTWEAR leans into gym-and-streetwear "alt" culture rather than the soft-pastel
 ## Project structure
 
 ```
-riotwear/
+Knurlworks/
 ├── index.html                  # SEO meta, JSON-LD, theme flash-prevention script
 ├── public/
 │   ├── favicon.svg
@@ -94,7 +94,7 @@ riotwear/
 ### Install
 
 ```bash
-cd riotwear
+cd Knurlworks
 npm install
 ```
 

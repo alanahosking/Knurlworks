@@ -28,13 +28,13 @@ export function Footer() {
             Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard, never restocked twice.
           </p>
           <div className="mt-6 flex gap-4">
-            <a href="#" aria-label="RIOTWEAR on Instagram" className="text-fg hover:text-accent">
+            <a href="#" aria-label="KnurlWorks on Instagram" className="text-fg hover:text-accent">
               <Instagram size={19} aria-hidden="true" />
             </a>
-            <a href="#" aria-label="RIOTWEAR on YouTube" className="text-fg hover:text-accent">
+            <a href="#" aria-label="KnurlWorks on YouTube" className="text-fg hover:text-accent">
               <Youtube size={19} aria-hidden="true" />
             </a>
-            <a href="#" aria-label="RIOTWEAR on Twitch" className="text-fg hover:text-accent">
+            <a href="#" aria-label="KnurlWorks on Twitch" className="text-fg hover:text-accent">
               <Twitch size={19} aria-hidden="true" />
             </a>
           </div>
@@ -97,7 +97,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container-wide flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:justify-between">
-        <p>© {new Date().getFullYear()} RIOTWEAR. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} KnurlWorks. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#" className="hover:text-accent">Privacy</a>
           <a href="#" className="hover:text-accent">Terms</a>

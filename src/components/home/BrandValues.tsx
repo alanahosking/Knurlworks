@@ -26,7 +26,7 @@ const values = [
 
 export function BrandValues() {
   return (
-    <section className="border-y border-line bg-bg-alt py-20 md:py-28" aria-label="Why RIOTWEAR">
+    <section className="border-y border-line bg-bg-alt py-20 md:py-28" aria-label="Why KnurlWorks">
       <div className="container-wide grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {values.map((value, i) => (
           <motion.div

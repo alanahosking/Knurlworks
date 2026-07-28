@@ -53,7 +53,7 @@
     <script>
       (function () {
         try {
-          var stored = localStorage.getItem('riotwear-theme');
+          var stored = localStorage.getItem('knurlworks-theme');
           var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
           document.documentElement.classList.toggle('light', theme === 'light');
           document.documentElement.setAttribute('data-theme', theme);
