@@ -146,18 +146,20 @@ The build output in `dist/` is a static site and can be hosted anywhere that ser
    so client-side routes don't 404 on refresh.
 
 ### GitHub Pages
-GitHub Pages has no server and does not run a build step for you, so pushing the raw project (this `src/` folder as-is) will 404 — it needs the *built* `dist/` output, and because a project page is served at `https://username.github.io/Knurlworks/` (not the domain root), the build must know that subpath.
+GitHub Pages has no server and does not run a build step for you, so pushing the raw project (this `src/` folder as-is) will 404 — it needs the *built* `dist/` output.
 
-This repo is already set up for it:
-- `vite.config.ts` sets `base: '/Knurlworks/'` whenever the `GH_PAGES` env var is set, so asset URLs resolve correctly under the subpath. Update this string first if your repo is ever renamed.
-- `src/main.tsx` passes `basename={import.meta.env.BASE_URL}` to `BrowserRouter`, so in-app links (`/shop`, `/about`) resolve under `/Knurlworks/...` too.
-- `scripts/copy-404.mjs` runs after every build and copies `index.html` to `404.html`. GitHub Pages serves `404.html` for any path it can't find as a real file (e.g. a deep link to `/shop`); since that file is the same app, React Router still picks up the correct route from the URL.
+This site is served from the custom domain `knurlworks.com.au` (see `public/CNAME`), so it's served from the domain root rather than a `/Knurlworks/` subpath:
+- `vite.config.ts` sets `base: '/'`.
+- `src/main.tsx` passes `basename={import.meta.env.BASE_URL}` to `BrowserRouter`.
+- `scripts/copy-404.mjs` runs after every build and copies `index.html` to `404.html`. GitHub Pages serves `404.html` for any path it can't find as a real file (e.g. a deep link to `/shop`); since that file is the same app, React Router still picks up the correct route from the URL. This is still needed with a custom domain — GitHub Pages never runs server-side rewrites.
+
+If you fork this or move it off the custom domain back to a plain `https://username.github.io/Knurlworks/` project page, delete `public/CNAME` and set `base: '/Knurlworks/'` in `vite.config.ts` instead.
 
 **Recommended: automatic deploys via GitHub Actions** (already included at `.github/workflows/deploy.yml`):
 1. Push this repo to GitHub as `Knurlworks`.
 2. In the repo, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
 3. Push to `main` (or run the workflow manually from the **Actions** tab). It builds with `npm run build:gh-pages` and deploys `dist/` automatically.
-4. Your site will be live at `https://<your-username>.github.io/Knurlworks/`.
+4. In **Settings → Pages → Custom domain**, confirm it shows `knurlworks.com.au` (populated automatically from `public/CNAME`) and that DNS is pointed at GitHub Pages (A/AAAA records for the apex, CNAME for `www`) at your registrar.
 
 **Manual alternative**, if you'd rather not use Actions:
 ```bash
@@ -178,7 +180,6 @@ Then in **Settings → Pages**, set **Source** to the `gh-pages` branch.
    ```
 
 ### Before going live
-- Replace the placeholder domain `https://riotwear.example.com` in `index.html`, `vite.config.ts` (sitemap `hostname`), `public/robots.txt`, and `src/components/ui/SEO.tsx`.
 - Add a real Open Graph image at `public/og-cover.jpg` (1200×630 recommended) — the meta tag referencing it is already in `index.html`.
 - Swap the mock catalog in `src/lib/products.ts` for real product data (and a real backend/checkout — the cart is currently client-side only and does not process payments).
 - Replace the illustrated `ProductArt` schematics with real product photography once available, or keep them as the brand's signature look.

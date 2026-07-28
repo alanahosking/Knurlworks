@@ -7,7 +7,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = 'RIOTWEAR';
-const SITE_URL = 'https://riotwear.example.com';
+const SITE_URL = 'https://knurlworks.com.au';
 
 export function SEO({ title, description, path }: SEOProps) {
   const fullTitle = `${title} | ${SITE_NAME}`;

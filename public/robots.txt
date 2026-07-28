@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://riotwear.example.com/sitemap.xml
+Sitemap: https://knurlworks.com.au/sitemap.xml
