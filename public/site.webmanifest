@@ -3,7 +3,7 @@
   "short_name": "KnurlWorks",
   "description": "Alternative gymwear for lifters who don't blend in.",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#0e0e0f",
   "theme_color": "#0e0e0f",
   "icons": [
