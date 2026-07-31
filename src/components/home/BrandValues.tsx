@@ -26,7 +26,7 @@ const values = [
 
 export function BrandValues() {
   return (
-    <section className="border-y border-line bg-bg-alt py-20 md:py-28" aria-label="Why KnurlWorks">
+    <section className="bg-white py-20 md:py-28" aria-label="Why KnurlWorks">
       <div className="container-wide grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {values.map((value, i) => (
           <motion.div
@@ -37,9 +37,9 @@ export function BrandValues() {
             transition={{ duration: 0.5, delay: i * 0.08 }}
             className="flex flex-col gap-4"
           >
-            <value.icon size={26} className="text-accent" aria-hidden="true" />
-            <h3 className="font-display text-xl leading-tight">{value.title}</h3>
-            <p className="text-sm leading-relaxed text-muted">{value.copy}</p>
+            <value.icon size={26} className="text-[#705042]" aria-hidden="true" />
+            <h3 className="font-display text-xl leading-tight text-[#101011]">{value.title}</h3>
+            <p className="text-sm leading-relaxed text-[#5A5854]">{value.copy}</p>
           </motion.div>
         ))}
       </div>
