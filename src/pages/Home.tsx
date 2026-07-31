@@ -2,7 +2,6 @@ import { SEO } from '@/components/ui/SEO';
 import { Hero } from '@/components/home/Hero';
 import { FeaturedCollection } from '@/components/home/FeaturedCollection';
 import { BrandValues } from '@/components/home/BrandValues';
-import { CTABanner } from '@/components/home/CTABanner';
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <Hero />
       <FeaturedCollection />
       <BrandValues />
-      <CTABanner />
     </>
   );
 }
