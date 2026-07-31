@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Twitch } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
-import { subscribeToMailchimp } from '@/lib/mailchimp';
+import { subscribeToMailerLite } from '@/lib/mailerlite';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ export function Footer() {
     setError('');
     setSubmitting(true);
     try {
-      await subscribeToMailchimp(email);
+      await subscribeToMailerLite(email);
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong — try again.');
