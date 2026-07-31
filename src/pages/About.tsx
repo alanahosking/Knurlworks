@@ -1,7 +1,5 @@
 import { SEO } from '@/components/ui/SEO';
 import { Manifesto } from '@/components/about/Manifesto';
-import { Values } from '@/components/about/Values';
-import { CTABanner } from '@/components/home/CTABanner';
 
 export default function About() {
   return (
@@ -12,8 +10,6 @@ export default function About() {
         path="/about"
       />
       <Manifesto />
-      <Values />
-      <CTABanner />
     </>
   );
 }

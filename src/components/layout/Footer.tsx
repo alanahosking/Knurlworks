@@ -2,20 +2,30 @@ import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Youtube, Twitch } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
+import { subscribeToMailchimp } from '@/lib/mailchimp';
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       setError('Enter a real email — the list only takes those.');
       return;
     }
     setError('');
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await subscribeToMailchimp(email);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong — try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -28,7 +38,13 @@ export function Footer() {
             Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard, never restocked twice.
           </p>
           <div className="mt-6 flex gap-4">
-            <a href="#" aria-label="KnurlWorks on Instagram" className="text-fg hover:text-accent">
+            <a
+              href="https://www.instagram.com/knurlworks?igsh=MWVsMWkwcDNkNzhkdg=="
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="KnurlWorks on Instagram"
+              className="text-fg hover:text-accent"
+            >
               <Instagram size={19} aria-hidden="true" />
             </a>
             <a href="#" aria-label="KnurlWorks on YouTube" className="text-fg hover:text-accent">
@@ -56,7 +72,7 @@ export function Footer() {
             <li><Link to="/about" className="hover:text-accent">About</Link></li>
             <li><a href="#" className="hover:text-accent">Shipping &amp; returns</a></li>
             <li><a href="#" className="hover:text-accent">Size guide</a></li>
-            <li><a href="#" className="hover:text-accent">Contact</a></li>
+            <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
           </ul>
         </nav>
 
@@ -78,13 +94,15 @@ export function Footer() {
                   placeholder="you@email.com"
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? 'footer-email-error' : undefined}
-                  className="w-full bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-muted"
+                  disabled={submitting}
+                  className="w-full bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-muted disabled:opacity-50"
                 />
                 <button
                   type="submit"
-                  className="shrink-0 bg-fg px-4 font-mono text-xs font-semibold uppercase text-bg hover:bg-accent hover:text-[#0e0e0f]"
+                  disabled={submitting}
+                  className="shrink-0 bg-fg px-4 font-mono text-xs font-semibold uppercase text-bg hover:bg-accent hover:text-[#0e0e0f] disabled:pointer-events-none disabled:opacity-50"
                 >
-                  Join
+                  {submitting ? '...' : 'Join'}
                 </button>
               </div>
               {error && (
