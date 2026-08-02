@@ -14,7 +14,7 @@ export function Hero() {
           >
             Strength looks good on you.
             <br />
-            <span className="text-accent">We just make sure your clothes do too.</span>
+            <span className="text-accent font-bold">We just make sure your clothes do too.</span>
           </motion.h1>
 
           <motion.p
