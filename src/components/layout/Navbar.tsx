@@ -15,6 +15,7 @@ const links = [
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { itemCount, openCart } = useCart();
 
   useEffect(() => {
@@ -24,6 +25,13 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
       'font-mono text-xs uppercase tracking-widest2 transition-colors',
@@ -31,11 +39,16 @@ export function Navbar() {
     );
 
   return (
-    <header className="sticky top-0 z-50 bg-bg/90 backdrop-blur-md">
+    <header
+      className={cn(
+        'sticky top-0 z-50 transition-colors duration-200',
+        scrolled ? 'bg-bg' : 'bg-bg/90 backdrop-blur-md',
+      )}
+    >
       <AnnouncementBar />
       <div className="container-wide flex h-20 items-center justify-between border-b border-line">
         <NavLink to="/" aria-label="KNURLWORKS home">
-          <Logo className="text-2xl" />
+          <Logo className="h-14" />
         </NavLink>
 
         <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">

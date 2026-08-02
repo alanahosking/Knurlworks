@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Youtube, Twitch } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { subscribeToMailerLite } from '@/lib/mailerlite';
 
@@ -33,25 +33,19 @@ export function Footer() {
       <div className="hazard-stripe" />
       <div className="container-wide grid grid-cols-1 gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
         <div>
-          <Logo className="text-3xl" />
+          <Logo className="h-16" />
           <p className="mt-4 max-w-xs text-sm text-muted">
             Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard, never restocked twice.
           </p>
-          <div className="mt-6 flex gap-4">
+          <div className="mt-6">
             <a
               href="https://www.instagram.com/knurlworks?igsh=MWVsMWkwcDNkNzhkdg=="
               target="_blank"
               rel="noopener noreferrer"
               aria-label="KnurlWorks on Instagram"
-              className="text-fg hover:text-accent"
+              className="inline-flex text-accent transition-transform hover:scale-110 hover:text-fg"
             >
-              <Instagram size={19} aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="KnurlWorks on YouTube" className="text-fg hover:text-accent">
-              <Youtube size={19} aria-hidden="true" />
-            </a>
-            <a href="#" aria-label="KnurlWorks on Twitch" className="text-fg hover:text-accent">
-              <Twitch size={19} aria-hidden="true" />
+              <Instagram size={36} aria-hidden="true" />
             </a>
           </div>
         </div>
