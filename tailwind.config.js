@@ -20,7 +20,7 @@ export default {
         'accent-2': 'rgb(var(--color-accent-2) / <alpha-value>)',
       },
       fontFamily: {
-        display: ['"Anton"', 'Impact', 'sans-serif'],
+        display: ['"Jost"', 'sans-serif'],
         body: ['"Inter"', 'system-ui', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
       },

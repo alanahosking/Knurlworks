@@ -157,9 +157,15 @@ body {
 }
 
 .font-display {
-  font-family: 'Anton', Impact, sans-serif;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
+}
+
+/* Logo source art is black-on-transparent; invert to white in dark theme */
+[data-theme='dark'] .brand-logo {
+  filter: invert(1);
 }
 
 /* Marquee track used in the hero ticker */

@@ -15,7 +15,7 @@ KnurlWorks leans into gym-and-streetwear "alt" culture rather than the soft-past
 | `--color-bg` | `#0E0E0F` (dark) / `#F2F0EA` (light) | Page background |
 | `--color-accent` | `#B89687` (dark) / `#705042` (light) | Primary CTAs, active states |
 | `--color-accent-2` | `#FF4B2B` blood orange | Sale tags, alerts |
-| Display type | Anton | Condensed, poster-style headlines |
+| Display type | Jost (light) | Geometric, wide-tracked headlines — matches the logo |
 | Body type | Inter | Long-form readability |
 | Utility type | IBM Plex Mono | Prices, tags, labels — a clothing-tag / spec-sheet voice |
 
