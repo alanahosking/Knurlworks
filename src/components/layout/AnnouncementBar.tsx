@@ -1,4 +1,4 @@
-const MESSAGE = 'FREE SHIPPING OVER $100  —  NEW DROP: CORROSION FLEECE  —  NO RESTOCKS  —  ';
+const MESSAGE = 'NEW DROP: CLASSIC TEE IN STOCK  —  FREE SHIPPING OVER $99  —  ';
 
 export function AnnouncementBar() {
   return (
