@@ -71,7 +71,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           ) : null}
           <button
             onClick={handleAdd}
-            className="w-full bg-fg py-2.5 font-mono text-xs font-semibold uppercase tracking-widest2 text-bg transition-colors hover:bg-accent hover:text-[#0e0e0f]"
+            className="w-full bg-fg py-2.5 font-body text-xs font-semibold uppercase tracking-widest2 text-bg transition-colors hover:bg-accent hover:text-[#0e0e0f]"
           >
             {justAdded ? 'Added ✓' : showSizes && !selectedSize ? 'Pick a size' : 'Add to cart'}
           </button>

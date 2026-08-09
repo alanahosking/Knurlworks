@@ -94,7 +94,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="shrink-0 bg-fg px-4 font-mono text-xs font-semibold uppercase text-bg hover:bg-accent hover:text-[#0e0e0f] disabled:pointer-events-none disabled:opacity-50"
+                  className="shrink-0 bg-fg px-4 font-body text-xs font-semibold uppercase text-bg hover:bg-accent hover:text-[#0e0e0f] disabled:pointer-events-none disabled:opacity-50"
                 >
                   {submitting ? '...' : 'Join'}
                 </button>

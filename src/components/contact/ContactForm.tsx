@@ -182,7 +182,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="inline-flex w-fit items-center justify-center bg-accent px-7 py-4 font-mono text-xs font-medium uppercase tracking-widest2 text-[#0e0e0f] transition-all duration-200 hover:bg-fg disabled:pointer-events-none disabled:opacity-50"
+        className="inline-flex w-fit items-center justify-center bg-accent px-7 py-4 font-body text-xs font-medium uppercase tracking-widest2 text-[#0e0e0f] transition-all duration-200 hover:bg-fg disabled:pointer-events-none disabled:opacity-50"
       >
         {submitting ? 'Sending…' : 'Submit your enquiry'}
       </button>

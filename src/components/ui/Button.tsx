@@ -4,7 +4,7 @@ import { Link, type LinkProps as RouterLinkProps } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 font-mono text-xs font-medium uppercase tracking-widest2 transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none';
+  'inline-flex items-center justify-center gap-2 font-body text-xs font-medium uppercase tracking-widest2 transition-all duration-200 disabled:opacity-40 disabled:pointer-events-none';
 
 const variants = {
   primary: 'bg-accent text-[#0e0e0f] hover:bg-fg px-7 py-4',
