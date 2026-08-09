@@ -27,8 +27,8 @@ export function CartDrawer() {
         throw new Error(data.error ?? 'Could not start checkout.');
       }
       window.location.href = data.url;
-    } catch {
-      setCheckoutError("Couldn't start checkout. Try again in a moment.");
+    } catch (err) {
+      setCheckoutError(err instanceof Error ? err.message : "Couldn't start checkout. Try again in a moment.");
       setCheckingOut(false);
     }
   };
