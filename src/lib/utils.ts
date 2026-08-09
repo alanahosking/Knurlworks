@@ -3,9 +3,9 @@ export function cn(...classes: Array<string | false | null | undefined>): string
 }
 
 export function formatPrice(value: number): string {
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-AU', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'AUD',
     minimumFractionDigits: 2,
   }).format(value);
 }

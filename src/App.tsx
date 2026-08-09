@@ -6,6 +6,8 @@ import Home from '@/pages/Home';
 import About from '@/pages/About';
 import Shop from '@/pages/Shop';
 import Contact from '@/pages/Contact';
+import CheckoutSuccess from '@/pages/CheckoutSuccess';
+import CheckoutCancel from '@/pages/CheckoutCancel';
 import NotFound from '@/pages/NotFound';
 
 function ScrollToTop() {
@@ -26,6 +28,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/checkout/success" element={<CheckoutSuccess />} />
+          <Route path="/checkout/cancel" element={<CheckoutCancel />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

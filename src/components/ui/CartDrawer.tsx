@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -8,6 +8,30 @@ import { Button } from '@/components/ui/Button';
 export function CartDrawer() {
   const { lines, isOpen, closeCart, updateQuantity, removeLine, subtotal } = useCart();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState('');
+
+  const handleCheckout = async () => {
+    setCheckoutError('');
+    setCheckingOut(true);
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lines: lines.map((l) => ({ productId: l.product.id, size: l.size, quantity: l.quantity })),
+        }),
+      });
+      const data = (await response.json()) as { url?: string; error?: string };
+      if (!response.ok || !data.url) {
+        throw new Error(data.error ?? 'Could not start checkout.');
+      }
+      window.location.href = data.url;
+    } catch {
+      setCheckoutError("Couldn't start checkout. Try again in a moment.");
+      setCheckingOut(false);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) closeButtonRef.current?.focus();
@@ -120,9 +144,14 @@ export function CartDrawer() {
                   <span className="uppercase tracking-widest2 text-muted">Subtotal</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
-                <Button variant="primary" className="w-full">
-                  Checkout
+                <Button variant="primary" className="w-full" onClick={handleCheckout} disabled={checkingOut}>
+                  {checkingOut ? 'Redirecting…' : 'Checkout'}
                 </Button>
+                {checkoutError && (
+                  <p className="mt-3 text-center text-xs text-accent-2" role="alert">
+                    {checkoutError}
+                  </p>
+                )}
                 <p className="mt-3 text-center text-xs text-muted">Shipping and taxes calculated at checkout.</p>
               </footer>
             )}

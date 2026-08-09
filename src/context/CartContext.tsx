@@ -9,6 +9,7 @@ interface CartContextValue {
   addItem: (product: Product, size: string, quantity?: number) => void;
   removeLine: (productId: string, size: string) => void;
   updateQuantity: (productId: string, size: string, quantity: number) => void;
+  clearCart: () => void;
   subtotal: number;
   itemCount: number;
 }
@@ -61,6 +62,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const clearCart = () => setLines([]);
+
   const subtotal = useMemo(
     () => lines.reduce((sum, l) => sum + l.product.price * l.quantity, 0),
     [lines],
@@ -75,6 +78,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     addItem,
     removeLine,
     updateQuantity,
+    clearCart,
     subtotal,
     itemCount,
   };
