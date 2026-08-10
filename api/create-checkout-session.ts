@@ -25,53 +25,53 @@ function isCheckoutLine(value: unknown): value is CheckoutLine {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const secretKey = process.env.STRIPE_SECRET_KEY;
-  if (!secretKey) {
-    console.error('STRIPE_SECRET_KEY is not set');
-    return res.status(500).json({ error: 'Checkout is not configured' });
-  }
-
-  const rawLines = (req.body as { lines?: unknown } | undefined)?.lines;
-  if (!Array.isArray(rawLines) || rawLines.length === 0 || !rawLines.every(isCheckoutLine)) {
-    return res.status(400).json({ error: 'Invalid cart' });
-  }
-
-  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
-  let subtotal = 0;
-
-  for (const line of rawLines) {
-    const product = products.find((p) => p.id === line.productId);
-    if (!product) {
-      return res.status(400).json({ error: `Unknown product: ${line.productId}` });
-    }
-    if (!product.variants.some((v) => v.size === line.size)) {
-      return res.status(400).json({ error: `Invalid size "${line.size}" for ${product.name}` });
-    }
-
-    subtotal += product.price * line.quantity;
-    lineItems.push({
-      quantity: line.quantity,
-      price_data: {
-        currency: 'aud',
-        unit_amount: Math.round(product.price * 100),
-        product_data: {
-          name: `${product.name} — ${line.size}`,
-        },
-      },
-    });
-  }
-
-  const shippingAmount = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : Math.round(FLAT_SHIPPING_FEE * 100);
-  const origin = (req.headers.origin as string | undefined) ?? `https://${req.headers.host}`;
-
-  const stripe = new Stripe(secretKey);
-
   try {
+    if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
+    if (!secretKey) {
+      console.error('STRIPE_SECRET_KEY is not set');
+      return res.status(500).json({ error: 'Checkout is not configured (missing STRIPE_SECRET_KEY)' });
+    }
+
+    const rawLines = (req.body as { lines?: unknown } | undefined)?.lines;
+    if (!Array.isArray(rawLines) || rawLines.length === 0 || !rawLines.every(isCheckoutLine)) {
+      return res.status(400).json({ error: 'Invalid cart' });
+    }
+
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+    let subtotal = 0;
+
+    for (const line of rawLines) {
+      const product = products.find((p) => p.id === line.productId);
+      if (!product) {
+        return res.status(400).json({ error: `Unknown product: ${line.productId}` });
+      }
+      if (!product.variants.some((v) => v.size === line.size)) {
+        return res.status(400).json({ error: `Invalid size "${line.size}" for ${product.name}` });
+      }
+
+      subtotal += product.price * line.quantity;
+      lineItems.push({
+        quantity: line.quantity,
+        price_data: {
+          currency: 'aud',
+          unit_amount: Math.round(product.price * 100),
+          product_data: {
+            name: `${product.name} — ${line.size}`,
+          },
+        },
+      });
+    }
+
+    const shippingAmount = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : Math.round(FLAT_SHIPPING_FEE * 100);
+    const origin = (req.headers.origin as string | undefined) ?? `https://${req.headers.host}`;
+
+    const stripe = new Stripe(secretKey);
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: lineItems,
@@ -95,7 +95,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     return res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error('Stripe checkout session creation failed', err);
-    return res.status(500).json({ error: 'Could not create checkout session' });
+    console.error('create-checkout-session crashed', err);
+    // TEMPORARY: surfacing the real error message while we're still testing
+    // (no real traffic on this endpoint yet). Revert to a generic message
+    // before going live.
+    const message = err instanceof Error ? err.message : String(err);
+    return res.status(500).json({ error: `Server error: ${message}` });
   }
 }
