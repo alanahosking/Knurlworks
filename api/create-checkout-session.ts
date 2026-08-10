@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import Stripe from 'stripe';
-import { products } from '../src/lib/products';
+import { checkoutProducts } from './_checkout-products';
 
 const FREE_SHIPPING_THRESHOLD = 99;
 const FLAT_SHIPPING_FEE = 11.99;
@@ -46,11 +46,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     let subtotal = 0;
 
     for (const line of rawLines) {
-      const product = products.find((p) => p.id === line.productId);
+      const product = checkoutProducts.find((p) => p.id === line.productId);
       if (!product) {
         return res.status(400).json({ error: `Unknown product: ${line.productId}` });
       }
-      if (!product.variants.some((v) => v.size === line.size)) {
+      if (!product.sizes.includes(line.size)) {
         return res.status(400).json({ error: `Invalid size "${line.size}" for ${product.name}` });
       }
 
