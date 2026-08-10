@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -6,32 +7,29 @@ import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 
 export function CartDrawer() {
-  const { lines, isOpen, closeCart, updateQuantity, removeLine, subtotal } = useCart();
+  const { lines, isOpen, openCart, closeCart, updateQuantity, removeLine, subtotal } = useCart();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const [checkingOut, setCheckingOut] = useState(false);
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [checkoutError, setCheckoutError] = useState('');
 
-  const handleCheckout = async () => {
-    setCheckoutError('');
-    setCheckingOut(true);
-    try {
-      const response = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          lines: lines.map((l) => ({ productId: l.product.id, size: l.size, quantity: l.quantity })),
-        }),
-      });
-      const data = (await response.json()) as { url?: string; error?: string };
-      if (!response.ok || !data.url) {
-        throw new Error(data.error ?? 'Could not start checkout.');
-      }
-      window.location.href = data.url;
-    } catch (err) {
-      setCheckoutError(err instanceof Error ? err.message : "Couldn't start checkout. Try again in a moment.");
-      setCheckingOut(false);
+  // Checkout is a real <form> POST so the browser follows the resulting
+  // redirect natively — a fetch()-then-window.location.href redirect gets
+  // silently blocked by some ad-blocker/privacy extensions, which flag
+  // delayed, JS-triggered redirects to third-party domains. Since the
+  // server can't return JSON once it's committed to a redirect, failures
+  // come back as a checkout_error query param instead.
+  useEffect(() => {
+    const error = searchParams.get('checkout_error');
+    if (error) {
+      setCheckoutError(error);
+      openCart();
+      const next = new URLSearchParams(searchParams);
+      next.delete('checkout_error');
+      setSearchParams(next, { replace: true });
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (isOpen) closeButtonRef.current?.focus();
@@ -144,9 +142,19 @@ export function CartDrawer() {
                   <span className="uppercase tracking-widest2 text-muted">Subtotal</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
-                <Button variant="primary" className="w-full" onClick={handleCheckout} disabled={checkingOut}>
-                  {checkingOut ? 'Redirecting…' : 'Checkout'}
-                </Button>
+                <form method="POST" action="/api/create-checkout-session">
+                  <input
+                    type="hidden"
+                    name="lines"
+                    value={JSON.stringify(
+                      lines.map((l) => ({ productId: l.product.id, size: l.size, quantity: l.quantity })),
+                    )}
+                  />
+                  <input type="hidden" name="returnTo" value={location.pathname} />
+                  <Button type="submit" variant="primary" className="w-full">
+                    Checkout
+                  </Button>
+                </form>
                 {checkoutError && (
                   <p className="mt-3 text-center text-xs text-accent-2" role="alert">
                     {checkoutError}

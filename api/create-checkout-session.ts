@@ -64,22 +64,47 @@ function isCheckoutLine(value: unknown): value is CheckoutLine {
   );
 }
 
+/**
+ * A plain HTML <form> POST (not a fetch() + client-side redirect) so the
+ * browser performs a native navigation the whole way through. The previous
+ * fetch-then-`window.location.href` version got silently blocked by some
+ * ad-blocker/privacy extensions, which specifically flag delayed,
+ * JS-triggered redirects to third-party domains — a real HTTP redirect
+ * from a form submission doesn't trigger that heuristic.
+ *
+ * Because the browser navigates away regardless of outcome, errors can't
+ * be returned as JSON for inline display — instead we redirect back to
+ * `returnTo` with a `checkout_error` query param, which CartDrawer reads
+ * on mount.
+ */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const body = req.body as { lines?: unknown; returnTo?: unknown } | undefined;
+  const returnTo = typeof body?.returnTo === 'string' && body.returnTo.startsWith('/') ? body.returnTo : '/';
+
+  const fail = (message: string) => {
+    res.redirect(303, `${returnTo}?checkout_error=${encodeURIComponent(message)}`);
+  };
+
   try {
     if (req.method !== 'POST') {
       res.setHeader('Allow', 'POST');
-      return res.status(405).json({ error: 'Method not allowed' });
+      return fail('Method not allowed');
     }
 
     const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
     if (!secretKey) {
       console.error('STRIPE_SECRET_KEY is not set');
-      return res.status(500).json({ error: 'Checkout is not configured (missing STRIPE_SECRET_KEY)' });
+      return fail('Checkout is not configured (missing STRIPE_SECRET_KEY)');
     }
 
-    const rawLines = (req.body as { lines?: unknown } | undefined)?.lines;
+    let rawLines: unknown;
+    try {
+      rawLines = typeof body?.lines === 'string' ? JSON.parse(body.lines) : undefined;
+    } catch {
+      return fail('Invalid cart');
+    }
     if (!Array.isArray(rawLines) || rawLines.length === 0 || !rawLines.every(isCheckoutLine)) {
-      return res.status(400).json({ error: 'Invalid cart' });
+      return fail('Invalid cart');
     }
 
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
@@ -88,10 +113,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     for (const line of rawLines) {
       const product = checkoutProducts.find((p) => p.id === line.productId);
       if (!product) {
-        return res.status(400).json({ error: `Unknown product: ${line.productId}` });
+        return fail(`Unknown product: ${line.productId}`);
       }
       if (!product.sizes.includes(line.size)) {
-        return res.status(400).json({ error: `Invalid size "${line.size}" for ${product.name}` });
+        return fail(`Invalid size "${line.size}" for ${product.name}`);
       }
 
       subtotal += product.price * line.quantity;
@@ -130,16 +155,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (!session.url) {
-      return res.status(500).json({ error: 'Could not create checkout session' });
+      return fail('Could not create checkout session');
     }
 
-    return res.status(200).json({ url: session.url });
+    return res.redirect(303, session.url);
   } catch (err) {
     console.error('create-checkout-session crashed', err);
-    // TEMPORARY: surfacing the real error message while we're still testing
-    // (no real traffic on this endpoint yet). Revert to a generic message
-    // before going live.
     const message = err instanceof Error ? err.message : String(err);
-    return res.status(500).json({ error: `Server error: ${message}` });
+    return fail(`Server error: ${message}`);
   }
 }
