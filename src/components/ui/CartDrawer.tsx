@@ -136,6 +136,12 @@ export function CartDrawer() {
               )}
             </div>
 
+            {checkoutError && lines.length === 0 && (
+              <p className="border-t border-line px-6 py-4 text-center text-xs text-accent-2" role="alert">
+                {checkoutError}
+              </p>
+            )}
+
             {lines.length > 0 && (
               <footer className="border-t border-line px-6 py-5">
                 <div className="mb-4 flex items-center justify-between font-mono text-sm">
