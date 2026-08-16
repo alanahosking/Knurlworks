@@ -4,7 +4,7 @@ export default function ReturnsPolicy() {
   return (
     <>
       <SEO
-        title="Returns & Refunds Policy"
+        title="Terms and Conditions"
         description="Your rights under Australian Consumer Law, plus KnurlWorks' returns, refunds, and change-of-mind policy."
         path="/returns-policy"
       />
@@ -13,7 +13,7 @@ export default function ReturnsPolicy() {
         <div className="mx-auto max-w-2xl">
           <p className="eyebrow mb-4">Legal</p>
           <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">
-            Returns &amp; Refunds Policy
+            Terms and Conditions
           </h1>
           <p className="mt-4 text-sm text-muted">KnurlWorks — Last updated: 16/08/2026</p>
 

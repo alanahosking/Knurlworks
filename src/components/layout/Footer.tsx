@@ -66,8 +66,6 @@ export function Footer() {
             <li><Link to="/about" className="hover:text-accent">About</Link></li>
             <li><a href="#" className="hover:text-accent">Size guide</a></li>
             <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
-            <li><Link to="/privacy-policy" className="hover:text-accent">Privacy Policy</Link></li>
-            <li><Link to="/returns-policy" className="hover:text-accent">Refunds &amp; Returns Policy</Link></li>
           </ul>
         </nav>
 
@@ -112,8 +110,8 @@ export function Footer() {
       <div className="container-wide flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:justify-between">
         <p>© {new Date().getFullYear()} KnurlWorks. All rights reserved.</p>
         <div className="flex gap-4">
-          <a href="#" className="hover:text-accent">Privacy</a>
-          <a href="#" className="hover:text-accent">Terms</a>
+          <Link to="/privacy-policy" className="hover:text-accent">Privacy</Link>
+          <Link to="/returns-policy" className="hover:text-accent">Terms</Link>
         </div>
       </div>
     </footer>
