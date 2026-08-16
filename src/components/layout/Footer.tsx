@@ -64,7 +64,6 @@ export function Footer() {
           <h2 className="eyebrow mb-4">Company</h2>
           <ul className="flex flex-col gap-3 text-sm">
             <li><Link to="/about" className="hover:text-accent">About</Link></li>
-            <li><a href="#" className="hover:text-accent">Shipping &amp; returns</a></li>
             <li><a href="#" className="hover:text-accent">Size guide</a></li>
             <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
             <li><Link to="/privacy-policy" className="hover:text-accent">Privacy Policy</Link></li>
