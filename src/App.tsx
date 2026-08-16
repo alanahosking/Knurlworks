@@ -8,6 +8,8 @@ import Shop from '@/pages/Shop';
 import Contact from '@/pages/Contact';
 import CheckoutSuccess from '@/pages/CheckoutSuccess';
 import CheckoutCancel from '@/pages/CheckoutCancel';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
+import ReturnsPolicy from '@/pages/ReturnsPolicy';
 import NotFound from '@/pages/NotFound';
 
 function ScrollToTop() {
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/cancel" element={<CheckoutCancel />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/returns-policy" element={<ReturnsPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

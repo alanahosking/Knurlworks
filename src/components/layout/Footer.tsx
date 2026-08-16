@@ -67,6 +67,8 @@ export function Footer() {
             <li><a href="#" className="hover:text-accent">Shipping &amp; returns</a></li>
             <li><a href="#" className="hover:text-accent">Size guide</a></li>
             <li><Link to="/contact" className="hover:text-accent">Contact</Link></li>
+            <li><Link to="/privacy-policy" className="hover:text-accent">Privacy Policy</Link></li>
+            <li><Link to="/returns-policy" className="hover:text-accent">Refunds &amp; Returns Policy</Link></li>
           </ul>
         </nav>
 
