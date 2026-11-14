@@ -21,7 +21,8 @@ At the end of any session that changes the site, its settings, or a decision, up
    Prefer updating an existing task over adding a near-duplicate. Use a readable `doc_id` for new tasks, e.g. `tech-size-guide`.
 3. **Decisions** (collection `decisions`): log choices the owner made, with `title`, `why`, `date`, `order`.
 4. **Open questions** (collection `questions`): add anything that needs the owner's answer, with `question`, `detail`, `resolved: false`, `order`. When one is answered, set `resolved: true`, `answer`, `resolvedOn`.
-5. **Never** read or write the `info` collection (private business details), delete the owner's tasks, or change the page itself. If the HQ tools aren't available in your session, say so and give the owner a short summary to paste into HQ's chat instead.
+5. **Requests for Claude** (collection `requests`): the owner saves requests in HQ, then says "check HQ" in a chat. When they do, read the `open` requests and any `questions` resolved since they were last handled, do the work that belongs to this repo, then set the request's `status: "done"`, a one-line `reply` saying what you did, and `doneOn` (`YYYY-MM-DD`). Leave requests that aren't about the website open, and say which ones you left.
+6. **Never** read or write the `info` collection (private business details) or the `ledger` collection (bookkeeping), delete the owner's tasks, or change the page itself. If the HQ tools aren't available in your session, say so and give the owner a short summary to paste into HQ's chat instead.
 
 ## Working rules
 
