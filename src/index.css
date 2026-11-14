@@ -54,6 +54,14 @@ body {
   position: relative;
 }
 
+/* The <select> itself is transparent with light text, but browsers draw the
+   open option list on a white panel, so options inherited light-on-white and
+   were unreadable. Force black-on-white for the option list in both themes. */
+select option {
+  color: #000;
+  background-color: #fff;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
