@@ -77,7 +77,7 @@ select option {
   /* The top banner is a slow ticker that carries real information (shipping offer), so it keeps
      scrolling even with "reduce motion" on. Hovering pauses it. */
   .marquee-track {
-    animation-duration: 22s !important;
+    animation-duration: 30s !important;
     animation-iteration-count: infinite !important;
   }
 }
@@ -186,7 +186,7 @@ select option {
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
+  animation: marquee 30s linear infinite;
 }
 
 .marquee-track:hover {
