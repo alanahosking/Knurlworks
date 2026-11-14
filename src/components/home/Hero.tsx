@@ -46,16 +46,32 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-md items-center justify-center py-6">
-          {/* Signature element: rotating hazard stamp — the site's recurring mark */}
+        <div className="relative mx-auto w-full max-w-md">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="aspect-[3/4] overflow-hidden border border-line bg-bg-alt"
+          >
+            <img
+              src="/images/classic-tee-back.webp"
+              alt="Back of the KnurlWorks Classic Tee in washed charcoal, with the KnurlWorks wordmark across the shoulders"
+              width={900}
+              height={1200}
+              fetchPriority="high"
+              className="h-full w-full object-contain object-bottom"
+            />
+          </motion.div>
+
+          {/* Signature element: rotating stamp, the site's recurring mark */}
           <motion.div
             initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
             animate={{ opacity: 1, scale: 1, rotate: -10 }}
             transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-accent bg-bg text-center"
+            className="absolute -right-3 -top-3 flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent bg-bg text-center sm:-right-5 sm:-top-5 sm:h-28 sm:w-28"
           >
-            <span className="font-mono text-[0.85rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
-              Limited Runs
+            <span className="font-mono text-[0.7rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
+              {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
             </span>
           </motion.div>
         </div>
