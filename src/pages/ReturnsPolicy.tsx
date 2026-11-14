@@ -15,7 +15,7 @@ export default function ReturnsPolicy() {
           <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">
             Terms and Conditions
           </h1>
-          <p className="mt-4 text-sm text-muted">KnurlWorks — Last updated: 16/08/2026</p>
+          <p className="mt-4 text-sm text-muted">KnurlWorks™ — Last updated: 16/08/2026</p>
 
           <div className="mt-10 flex flex-col gap-10 text-base leading-relaxed text-fg">
             <p>

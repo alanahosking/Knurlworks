@@ -157,7 +157,7 @@ export function Footer() {
         </div>
       </div>
       <div className="container-wide flex flex-col gap-2 border-t border-line py-6 text-xs text-muted sm:flex-row sm:justify-between">
-        <p>© {new Date().getFullYear()} KnurlWorks. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} KnurlWorks™. All rights reserved.</p>
         <div className="flex gap-4">
           <Link to="/privacy-policy" className="hover:text-accent">Privacy</Link>
           <Link to="/returns-policy" className="hover:text-accent">Terms</Link>

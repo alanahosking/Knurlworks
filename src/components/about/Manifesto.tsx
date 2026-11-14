@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const paragraphs = [
-  'KnurlWorks started with a simple frustration: I didn’t want to leave my personality at the gym door.',
+  'KnurlWorks™ started with a simple frustration: I didn’t want to leave my personality at the gym door.',
   'I was tired of choosing between clothes that performed and clothes that actually looked like me. I wanted something with edge, with a little attitude, that still moved the way I needed it to move when the weight got heavy. Not just another gym girl in another basic set. Someone who trained hard and still looked like herself doing it.',
   'Affordability matters just as much to me as design. Quality gymwear shouldn’t be a luxury, and it definitely shouldn’t be the reason someone skips the gym. Ugly, uncomfortable, or overpriced clothing is one more barrier between a person and the workout that could change their day, or their life. I didn’t want to add to that.',
   'Because the truth is, feeling confident is sometimes the hardest part of showing up. Not the lifting itself, not the reps, but walking in and feeling like you belong there. That’s what I wanted to create. Gymwear that meets you wherever you’re starting from and helps you feel a little stronger and a little more yourself, every time you put it on.',

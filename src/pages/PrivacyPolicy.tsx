@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         <div className="mx-auto max-w-2xl">
           <p className="eyebrow mb-4">Legal</p>
           <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">Privacy Policy</h1>
-          <p className="mt-4 text-sm text-muted">KnurlWorks. Last updated: 14/11/2026</p>
+          <p className="mt-4 text-sm text-muted">KnurlWorks™. Last updated: 14/11/2026</p>
 
           <div className="mt-10 flex flex-col gap-10 text-base leading-relaxed text-fg">
             <p>

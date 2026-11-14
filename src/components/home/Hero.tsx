@@ -23,7 +23,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-6 max-w-md text-base leading-relaxed text-muted"
           >
-            This is KnurlWorks.
+            This is KnurlWorks™.
             <br />
             Built for the lift. Cut for the lifter.
             <br />
