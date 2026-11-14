@@ -184,6 +184,15 @@ Then in **Settings → Pages**, set **Source** to the `gh-pages` branch.
 - Swap the mock catalog in `src/lib/products.ts` for real product data (and a real backend/checkout — the cart is currently client-side only and does not process payments).
 - Replace the illustrated `ProductArt` schematics with real product photography once available, or keep them as the brand's signature look.
 
+## Private owner page (`/hq`)
+
+`/hq` is a password-protected launchpad with links to the KnurlWorks workstation and the business dashboards (Stripe, Vercel, MailerLite, Namecheap and so on). It holds links only, no business data or secrets.
+
+- Code: `api/hq.ts`, routed by the `/hq` rewrite in `vercel.json` (listed before the SPA catch-all).
+- Password: set `HQ_PASSWORD` in Vercel environment variables (Production, and the Preview branch you test on). Optional `HQ_USERNAME`. Redeploy after changing either.
+- If `HQ_PASSWORD` is missing the page refuses to load (503). It also shows whether checkout is in test or live mode, read from the Stripe key prefix only.
+- Browsers remember Basic Auth until they close; use a private window on shared computers.
+
 ## Notes on the mock catalog & checkout
 
 This build ships with realistic sample product data (12 SKUs) and a fully working cart (add, remove, adjust quantity, persisted across reloads) so the shop experience can be reviewed end-to-end. There is **no real payment processing** — the "Checkout" button in the cart drawer is a placeholder for wiring up a provider such as Stripe Checkout or Shopify's Storefront API.
