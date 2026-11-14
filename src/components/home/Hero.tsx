@@ -59,7 +59,7 @@ export function Hero() {
               width={900}
               height={1200}
               fetchPriority="high"
-              className="h-full w-full origin-[50%_45%] scale-[1.25] object-contain object-bottom"
+              className="h-full w-full origin-[50%_45%] scale-[1.3] object-contain object-bottom"
             />
           </motion.div>
 
@@ -69,9 +69,9 @@ export function Hero() {
               initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
               animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="flex h-40 w-40 items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-[11.25rem] sm:w-[11.25rem]"
+              className="flex h-[11.2rem] w-[11.2rem] items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-[12.6rem] sm:w-[12.6rem]"
             >
-              <span className="max-w-[8.125rem] font-mono text-[1rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[1.0625rem]">
+              <span className="max-w-[9.1rem] font-mono text-[1.12rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[1.19rem]">
                 {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
               </span>
             </motion.div>
