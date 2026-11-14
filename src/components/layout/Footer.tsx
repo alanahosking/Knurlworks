@@ -1,7 +1,8 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
+import { Recaptcha, type RecaptchaHandle } from '@/components/ui/Recaptcha';
 import { subscribeToMailerLite } from '@/lib/mailerlite';
 
 export function Footer() {
@@ -9,6 +10,10 @@ export function Footer() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  // The human check (and Google's script) only loads once someone clicks into the email box.
+  const [showCaptcha, setShowCaptcha] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<RecaptchaHandle>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -16,13 +21,20 @@ export function Footer() {
       setError('Enter a real email — the list only takes those.');
       return;
     }
+    if (!captchaToken) {
+      setShowCaptcha(true);
+      setError('Tick "I\'m not a robot" first.');
+      return;
+    }
     setError('');
     setSubmitting(true);
     try {
-      await subscribeToMailerLite(email);
+      await subscribeToMailerLite(email, captchaToken);
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong — try again.');
+      // Tokens are single use, so a failed attempt needs a fresh tick.
+      captchaRef.current?.reset();
     } finally {
       setSubmitting(false);
     }
@@ -83,6 +95,7 @@ export function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onFocus={() => setShowCaptcha(true)}
                   placeholder="you@email.com"
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? 'footer-email-error' : undefined}
@@ -97,11 +110,13 @@ export function Footer() {
                   {submitting ? '...' : 'Join'}
                 </button>
               </div>
+              {showCaptcha && <Recaptcha ref={captchaRef} onChange={setCaptchaToken} />}
               {error && (
                 <p id="footer-email-error" role="alert" className="text-xs text-accent-2">
                   {error}
                 </p>
               )}
+              <p className="text-xs text-muted">By joining you agree to receive KnurlWorks emails. Unsubscribe anytime.</p>
             </form>
           )}
         </div>
