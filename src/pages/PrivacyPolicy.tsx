@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         <div className="mx-auto max-w-2xl">
           <p className="eyebrow mb-4">Legal</p>
           <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">Privacy Policy</h1>
-          <p className="mt-4 text-sm text-muted">KnurlWorks — Last updated: 14/11/2026</p>
+          <p className="mt-4 text-sm text-muted">KnurlWorks. Last updated: 14/11/2026</p>
 
           <div className="mt-10 flex flex-col gap-10 text-base leading-relaxed text-fg">
             <p>
@@ -26,18 +26,18 @@ export default function PrivacyPolicy() {
               <h2 className="font-display text-2xl">The personal information we collect</h2>
               <p className="mt-4 text-muted">Depending on how you interact with us, we may collect:</p>
               <ul className="mt-4 flex flex-col gap-2 pl-5 text-muted marker:text-accent">
-                <li className="list-disc">Contact details — name, email, phone number, shipping and billing address</li>
-                <li className="list-disc">Order information — items purchased, order value, order history</li>
+                <li className="list-disc">Contact details: name, email, phone number, shipping and billing address</li>
+                <li className="list-disc">Order information: items purchased, order value, order history</li>
                 <li className="list-disc">
-                  Payment information — handled directly by Stripe, our payment processor. We do not store your full
+                  Payment information: handled directly by Stripe, our payment processor. We do not store your full
                   card details on our servers.
                 </li>
-                <li className="list-disc">Account and marketing preferences — if you sign up to our mailing list via MailerLite</li>
+                <li className="list-disc">Account and marketing preferences: if you sign up to our mailing list via MailerLite</li>
                 <li className="list-disc">
-                  Website usage data — pages visited, device and browser type, IP address, collected via standard
-                  analytics tools
+                  Website usage data: pages visited, device and browser type, IP address, collected by our website
+                  host and the services listed below
                 </li>
-                <li className="list-disc">Communications — anything you send us via email, contact forms, or social media</li>
+                <li className="list-disc">Communications: anything you send us via email, contact forms, or social media</li>
               </ul>
             </section>
 
@@ -62,14 +62,15 @@ export default function PrivacyPolicy() {
               </p>
               <ul className="mt-4 flex flex-col gap-2 pl-5 text-muted marker:text-accent">
                 <li className="list-disc">
-                  Stripe — to process payments securely (Stripe's own privacy policy applies to how it handles your
+                  Stripe: to process payments securely (Stripe's own privacy policy applies to how it handles your
                   payment data)
                 </li>
-                <li className="list-disc">MailerLite — to send marketing emails, if you've subscribed</li>
+                <li className="list-disc">MailerLite: to send marketing emails, if you've subscribed</li>
                 <li className="list-disc">
-                  Google, through its reCAPTCHA service, to protect our newsletter signup from spam and bots. When you
-                  use the signup form, reCAPTCHA collects information such as your IP address, device and browser
-                  details, and how you interact with the page, and sends it to Google. Google's{' '}
+                  Google: to protect our newsletter signup from spam and bots with reCAPTCHA, and to load the fonts on
+                  our website through Google Fonts. When you use the signup form, reCAPTCHA collects information such
+                  as your IP address, device and browser details, and how you interact with the page, and sends it to
+                  Google. Loading our pages also sends your IP address and browser details to Google Fonts. Google's{' '}
                   <a
                     href="https://policies.google.com/privacy"
                     target="_blank"
@@ -89,8 +90,13 @@ export default function PrivacyPolicy() {
                   </a>{' '}
                   apply to that information.
                 </li>
-                <li className="list-disc">Shipping and delivery providers — to get your order to you</li>
-                <li className="list-disc">Government or regulatory bodies — where required by law</li>
+                <li className="list-disc">Formspree: to receive and deliver the messages you send through our contact form</li>
+                <li className="list-disc">
+                  Vercel: to host our website. Like most web hosts, Vercel records technical information such as your
+                  IP address and browser details when you visit.
+                </li>
+                <li className="list-disc">Shipping and delivery providers: to get your order to you</li>
+                <li className="list-disc">Government or regulatory bodies: where required by law</li>
               </ul>
               <p className="mt-4 text-muted">
                 Some of these providers may store or process data outside Australia. Where that happens, we take
