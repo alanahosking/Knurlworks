@@ -1,7 +1,6 @@
 import { SEO } from '@/components/ui/SEO';
 import { Hero } from '@/components/home/Hero';
 import { FeaturedCollection } from '@/components/home/FeaturedCollection';
-import { ComingSoonBand } from '@/components/home/ComingSoonBand';
 import { SHOP_OPEN } from '@/lib/config';
 import { BrandValues } from '@/components/home/BrandValues';
 
@@ -14,7 +13,7 @@ export default function Home() {
         path="/"
       />
       <Hero />
-      {SHOP_OPEN ? <FeaturedCollection /> : <ComingSoonBand />}
+      {SHOP_OPEN && <FeaturedCollection />}
       <BrandValues />
     </>
   );

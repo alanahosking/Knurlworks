@@ -46,36 +46,15 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <div className="relative mx-auto aspect-square w-full max-w-md">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92, rotate: -3 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-            className="absolute inset-6 flex items-center justify-center border border-line bg-bg-alt"
-          >
-            <svg viewBox="0 0 240 240" className="h-3/4 w-3/4" role="img" aria-label="Riot tape heavyweight tee schematic">
-              <g stroke="currentColor" strokeWidth="2" fill="none" strokeLinejoin="round" className="text-fg">
-                <path d="M70 60 L100 40 L140 40 L170 60 L200 50 L215 85 L190 100 L180 90 L180 210 L60 210 L60 90 L50 100 L25 85 L55 60Z" />
-                <path d="M100 40 C100 55 140 55 140 40" />
-              </g>
-              <path
-                d="M45 120 L215 120"
-                stroke="rgb(var(--color-accent))"
-                strokeWidth="16"
-                strokeDasharray="18 14"
-                opacity="0.85"
-              />
-            </svg>
-          </motion.div>
-
+        <div className="relative mx-auto flex w-full max-w-md items-center justify-center py-6">
           {/* Signature element: rotating hazard stamp — the site's recurring mark */}
           <motion.div
             initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
-            animate={{ opacity: 1, scale: 1, rotate: -12 }}
+            animate={{ opacity: 1, scale: 1, rotate: -10 }}
             transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="absolute -right-3 -top-3 flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent bg-bg text-center"
+            className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-accent bg-bg text-center"
           >
-            <span className="font-mono text-[0.6rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
+            <span className="font-mono text-[0.85rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
               Limited Runs
             </span>
           </motion.div>
