@@ -3,33 +3,27 @@ import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { Recaptcha, type RecaptchaHandle } from '@/components/ui/Recaptcha';
+import { loadRecaptcha } from '@/lib/recaptcha';
 import { subscribeToMailerLite } from '@/lib/mailerlite';
+
+const isValidEmail = (value: string) => /^\S+@\S+\.\S+$/.test(value);
 
 export function Footer() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  // The human check (and Google's script) only loads once someone clicks into the email box.
+  // Two-step signup: pressing Join checks the email, then shows the human check.
+  // Ticking the box finishes the signup, so there is no second click.
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const captchaRef = useRef<RecaptchaHandle>(null);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!/^\S+@\S+\.\S+$/.test(email)) {
-      setError('Enter a real email — the list only takes those.');
-      return;
-    }
-    if (!captchaToken) {
-      setShowCaptcha(true);
-      setError('Tick "I\'m not a robot" first.');
-      return;
-    }
+  const submit = async (token: string) => {
     setError('');
     setSubmitting(true);
     try {
-      await subscribeToMailerLite(email, captchaToken);
+      await subscribeToMailerLite(email, token);
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong — try again.');
@@ -38,6 +32,36 @@ export function Footer() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!isValidEmail(email)) {
+      setError('Enter a real email — the list only takes those.');
+      return;
+    }
+    if (!showCaptcha) {
+      // Step 2: the human check appears now, and ticking it completes the signup.
+      setError('');
+      setShowCaptcha(true);
+      return;
+    }
+    if (!captchaToken) {
+      setError('Tick "I\'m not a robot" to finish joining.');
+      return;
+    }
+    void submit(captchaToken);
+  };
+
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
+    if (!token) return;
+    if (!isValidEmail(email)) {
+      setError('Enter a real email — the list only takes those.');
+      captchaRef.current?.reset();
+      return;
+    }
+    void submit(token);
   };
 
   return (
@@ -95,7 +119,9 @@ export function Footer() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  onFocus={() => setShowCaptcha(true)}
+                  // Preload Google's script on first interaction (nothing is shown yet), so the
+                  // human check appears instantly after Join.
+                  onFocus={() => void loadRecaptcha().catch(() => undefined)}
                   placeholder="you@email.com"
                   aria-invalid={Boolean(error)}
                   aria-describedby={error ? 'footer-email-error' : undefined}
@@ -110,7 +136,14 @@ export function Footer() {
                   {submitting ? '...' : 'Join'}
                 </button>
               </div>
-              {showCaptcha && <Recaptcha ref={captchaRef} onChange={setCaptchaToken} />}
+              {showCaptcha && (
+                <>
+                  <p className="text-xs text-fg" role="status">
+                    One more step: tick the box to finish joining.
+                  </p>
+                  <Recaptcha ref={captchaRef} onChange={handleCaptchaChange} />
+                </>
+              )}
               {error && (
                 <p id="footer-email-error" role="alert" className="text-xs text-accent-2">
                   {error}
