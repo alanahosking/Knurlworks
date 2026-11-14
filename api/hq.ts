@@ -45,7 +45,8 @@ const GROUPS: LinkGroup[] = [
   {
     title: 'Email & marketing',
     links: [
-      { label: 'Email inbox', href: 'https://privateemail.com', hint: 'admin@knurlworks.com.au' },
+      { label: 'Gmail', href: 'https://mail.google.com/mail/?authuser=knurlworks@gmail.com#inbox', hint: 'knurlworks@gmail.com (admin@ forwards here)' },
+      { label: 'Private Email', href: 'https://privateemail.com', hint: 'admin@knurlworks.com.au (backup copy)' },
       { label: 'MailerLite', href: 'https://dashboard.mailerlite.com', hint: 'Subscribers and campaigns' },
     ],
   },
