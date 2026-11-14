@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
                 <li className="list-disc">process and deliver your orders</li>
                 <li className="list-disc">manage payments and refunds</li>
                 <li className="list-disc">respond to enquiries and provide customer support</li>
-                <li className="list-disc">send marketing emails and drop announcements, where you've opted in</li>
+                <li className="list-disc">send marketing emails and new design announcements, where you've opted in</li>
                 <li className="list-disc">improve our website, products, and customer experience</li>
                 <li className="list-disc">meet our legal and tax obligations</li>
               </ul>
@@ -131,7 +131,7 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="font-display text-2xl">Marketing communications</h2>
               <p className="mt-4 text-muted">
-                If you subscribe to our mailing list, we'll send you drop announcements, promotions, and brand
+                If you subscribe to our mailing list, we'll send you new design announcements, promotions, and brand
                 updates. You can unsubscribe at any time using the link at the bottom of any email, or by contacting
                 us directly.
               </p>

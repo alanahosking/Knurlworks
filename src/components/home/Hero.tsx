@@ -75,7 +75,7 @@ export function Hero() {
             className="absolute -right-3 -top-3 flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent bg-bg text-center"
           >
             <span className="font-mono text-[0.6rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
-              No Restock
+              Limited Runs
             </span>
           </motion.div>
         </div>

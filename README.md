@@ -22,7 +22,7 @@ KnurlWorks leans into gym-and-streetwear "alt" culture rather than the soft-past
 **Signature elements:**
 - A repeating **hazard-stripe** divider (`.hazard-stripe`) marks deliberate section breaks — echoing warning tape from a loading dock or gym floor.
 - Products are rendered as **mono-line tech-pack schematics** (`ProductArt.tsx`) tinted with each item's colorway, instead of stock photography — the same drafting language used on real cut sheets. Swap in real product photography later by replacing `<ProductArt />` with an `<img>` in `ProductCard.tsx` and `Hero.tsx`.
-- A rotating **"No Restock" stamp** badge on the homepage hero reinforces the limited-drop model.
+- A rotating **"Limited Runs" stamp** badge on the homepage hero reinforces the limited-run model.
 
 ## Tech stack
 

@@ -71,7 +71,7 @@ export function Footer() {
         <div>
           <Logo className="h-16" />
           <p className="mt-4 max-w-xs text-sm text-muted">
-            Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard, never restocked twice.
+            Gymwear for the ones who train loud and dress louder. Built in small batches, worn hard. Classics come back, new designs are limited.
           </p>
           <div className="mt-6">
             <a

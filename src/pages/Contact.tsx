@@ -18,7 +18,7 @@ export default function Contact() {
             <p className="eyebrow mb-4">Get in touch</p>
             <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">Contact Us</h1>
             <p className="mt-6 max-w-sm text-base leading-relaxed text-muted">
-              Questions about an order, sizing, or a drop you missed? Send us an enquiry and we'll get back to you,
+              Questions about an order, sizing, or a design you missed? Send us an enquiry and we'll get back to you,
               or email us directly.
             </p>
 

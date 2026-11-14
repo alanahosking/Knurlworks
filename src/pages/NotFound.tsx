@@ -13,14 +13,14 @@ export default function NotFound() {
         <p className="eyebrow">Error 404</p>
         <h1 className="font-display text-balance text-6xl leading-[0.9] sm:text-8xl">Rack's Empty.</h1>
         <p className="max-w-md text-muted">
-          Whatever you were looking for isn't on this bar. It might've been archived — nothing here restocks.
+          Whatever you were looking for isn't on this bar. It might've sold out or moved on.
         </p>
         <div className="mt-2 flex gap-4">
           <Button as="link" to="/">
             Back home
           </Button>
           <Button as="link" to="/shop" variant="secondary">
-            Shop drops
+            Shop new designs
           </Button>
         </div>
       </div>

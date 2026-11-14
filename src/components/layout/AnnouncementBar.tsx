@@ -1,4 +1,4 @@
-const MESSAGE = 'NEW DROP: CLASSIC TEE IN STOCK  —  FREE SHIPPING OVER $99  —  ';
+const MESSAGE = 'NOW LIVE: CLASSIC TEE  —  FREE SHIPPING OVER $99  —  ';
 
 export function AnnouncementBar() {
   return (

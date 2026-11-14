@@ -13,7 +13,7 @@ export function FeaturedCollection() {
         <SectionHeading
           eyebrow="Just landed"
           title="This Week's Damage"
-          description="Fresh cuts before they're gone for good. We don't restock — once a batch sells, it's archived."
+          description="Fresh cuts while they last. New designs are limited runs, and classics come back."
         />
         <Link
           to="/shop"

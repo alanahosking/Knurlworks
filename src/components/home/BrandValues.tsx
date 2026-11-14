@@ -15,7 +15,7 @@ const values = [
   {
     icon: Recycle,
     title: 'Small batches, zero waste',
-    copy: 'We drop limited runs and stop. No overproduction sitting in a warehouse waiting for a discount code.',
+    copy: 'We make limited runs and stop. No overproduction sitting in a warehouse waiting for a discount code.',
   },
   {
     icon: Users,
