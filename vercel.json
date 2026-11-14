@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/hq", "destination": "/api/hq" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
 }
