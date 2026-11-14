@@ -2,7 +2,6 @@ import { SEO } from '@/components/ui/SEO';
 import { Hero } from '@/components/home/Hero';
 import { FeaturedCollection } from '@/components/home/FeaturedCollection';
 import { SHOP_OPEN } from '@/lib/config';
-import { BrandValues } from '@/components/home/BrandValues';
 
 export default function Home() {
   return (
@@ -14,7 +13,6 @@ export default function Home() {
       />
       <Hero />
       {SHOP_OPEN && <FeaturedCollection />}
-      <BrandValues />
     </>
   );
 }
