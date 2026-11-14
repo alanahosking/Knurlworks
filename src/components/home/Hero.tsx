@@ -63,8 +63,8 @@ export function Hero() {
             />
           </motion.div>
 
-          {/* Signature element: rotating stamp, the site's recurring mark. Sits in the top third of the sample photo as a teaser. */}
-          <div className="pointer-events-none absolute inset-x-0 top-[18%] flex -translate-y-1/2 justify-center">
+          {/* Signature element: rotating stamp, the site's recurring mark. Covers the wordmark on the sample photo as a teaser. */}
+          <div className="pointer-events-none absolute inset-x-0 top-[38%] flex -translate-y-1/2 justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
               animate={{ opacity: 1, scale: 1, rotate: -10 }}
