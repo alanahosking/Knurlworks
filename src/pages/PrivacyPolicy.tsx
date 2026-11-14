@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
         <div className="mx-auto max-w-2xl">
           <p className="eyebrow mb-4">Legal</p>
           <h1 className="font-display text-balance text-5xl leading-[0.95] sm:text-6xl">Privacy Policy</h1>
-          <p className="mt-4 text-sm text-muted">KnurlWorks — Last updated: 16/08/2026</p>
+          <p className="mt-4 text-sm text-muted">KnurlWorks — Last updated: 14/11/2026</p>
 
           <div className="mt-10 flex flex-col gap-10 text-base leading-relaxed text-fg">
             <p>
@@ -66,6 +66,29 @@ export default function PrivacyPolicy() {
                   payment data)
                 </li>
                 <li className="list-disc">MailerLite — to send marketing emails, if you've subscribed</li>
+                <li className="list-disc">
+                  Google, through its reCAPTCHA service, to protect our newsletter signup from spam and bots. When you
+                  use the signup form, reCAPTCHA collects information such as your IP address, device and browser
+                  details, and how you interact with the page, and sends it to Google. Google's{' '}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:underline"
+                  >
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:underline"
+                  >
+                    Terms of Service
+                  </a>{' '}
+                  apply to that information.
+                </li>
                 <li className="list-disc">Shipping and delivery providers — to get your order to you</li>
                 <li className="list-disc">Government or regulatory bodies — where required by law</li>
               </ul>
@@ -92,6 +115,10 @@ export default function PrivacyPolicy() {
                 Our website may use cookies and similar technologies to remember your preferences, understand site
                 traffic, and improve your shopping experience. You can control or disable cookies through your
                 browser settings, though some site features may not work as well as a result.
+              </p>
+              <p className="mt-4 text-muted">
+                Our newsletter signup uses Google reCAPTCHA. It only loads once you start using the signup form, and
+                it may set its own cookies to tell people apart from bots.
               </p>
             </section>
 
