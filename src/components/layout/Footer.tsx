@@ -105,7 +105,9 @@ export function Footer() {
         </nav>
 
         <div>
-          <h2 className="eyebrow mb-4">Get the drops first</h2>
+          <h2 className="eyebrow mb-4">
+            Subscribe to our mailing list to stay up to date with all the latest news and restocks
+          </h2>
           {submitted ? (
             <p className="text-sm text-accent" role="status">You're on the list. Watch your inbox.</p>
           ) : (
