@@ -69,9 +69,9 @@ export function Hero() {
               initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
               animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="flex h-[11.2rem] w-[11.2rem] items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-[12.6rem] sm:w-[12.6rem]"
+              className="flex h-[12.8rem] w-[12.8rem] items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-[14.4rem] sm:w-[14.4rem]"
             >
-              <span className="max-w-[9.1rem] font-mono text-[1.12rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[1.19rem]">
+              <span className="max-w-[10.4rem] font-mono text-[1.28rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[1.36rem]">
                 {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
               </span>
             </motion.div>
