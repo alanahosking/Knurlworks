@@ -1,5 +1,6 @@
 import { SEO } from '@/components/ui/SEO';
 import { Button } from '@/components/ui/Button';
+import { SHOP_OPEN } from '@/lib/config';
 
 export default function NotFound() {
   return (
@@ -20,7 +21,7 @@ export default function NotFound() {
             Back home
           </Button>
           <Button as="link" to="/shop" variant="secondary">
-            Shop new designs
+            {SHOP_OPEN ? 'Shop new designs' : 'Coming Soon'}
           </Button>
         </div>
       </div>

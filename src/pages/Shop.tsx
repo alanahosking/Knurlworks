@@ -8,6 +8,8 @@ import { ProductCardSkeleton } from '@/components/ui/Skeleton';
 import { Button } from '@/components/ui/Button';
 import { products as catalog } from '@/lib/products';
 import type { Product } from '@/types';
+import { ShopComingSoon } from '@/components/shop/ShopComingSoon';
+import { SHOP_OPEN } from '@/lib/config';
 
 type LoadState = 'loading' | 'success' | 'error';
 
@@ -26,7 +28,7 @@ function fetchProducts(): Promise<Product[]> {
   });
 }
 
-export default function Shop() {
+function ShopCatalog() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [state, setState] = useState<LoadState>('loading');
   const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -150,4 +152,8 @@ export default function Shop() {
       </div>
     </>
   );
+}
+
+export default function Shop() {
+  return SHOP_OPEN ? <ShopCatalog /> : <ShopComingSoon />;
 }

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
+import { SHOP_OPEN } from '@/lib/config';
 
 export function Hero() {
   return (
@@ -37,7 +38,7 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center gap-4"
           >
             <Button as="link" to="/shop">
-              shop
+              {SHOP_OPEN ? 'Shop' : 'Coming Soon'}
             </Button>
             <Button as="link" to="/about" variant="secondary">
               Our story

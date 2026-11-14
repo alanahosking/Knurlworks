@@ -4,6 +4,7 @@ import { Menu, X, ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { useCart } from '@/context/CartContext';
+import { SHOP_OPEN } from '@/lib/config';
 import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
 import { Logo } from '@/components/ui/Logo';
 
@@ -61,6 +62,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          {SHOP_OPEN && (
           <button
             type="button"
             onClick={openCart}
@@ -74,6 +76,7 @@ export function Navbar() {
               </span>
             )}
           </button>
+          )}
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}

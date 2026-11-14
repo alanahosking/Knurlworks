@@ -3,6 +3,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { SkipLink } from '@/components/layout/SkipLink';
 import { CartDrawer } from '@/components/ui/CartDrawer';
+import { SHOP_OPEN } from '@/lib/config';
 
 export function Layout({ children }: { children: ReactNode }) {
   return (
@@ -14,7 +15,7 @@ export function Layout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
-      <CartDrawer />
+      {SHOP_OPEN && <CartDrawer />}
     </div>
   );
 }

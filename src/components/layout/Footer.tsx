@@ -89,9 +89,9 @@ export function Footer() {
         <nav aria-label="Shop">
           <h2 className="eyebrow mb-4">Shop</h2>
           <ul className="flex flex-col gap-3 text-sm">
-            <li><a href="#" className="hover:text-accent">All Products</a></li>
-            <li><a href="#" className="hover:text-accent">Tees</a></li>
-            <li><a href="#" className="hover:text-accent">Accessories</a></li>
+            <li><Link to="/shop" className="hover:text-accent">All Products</Link></li>
+            <li><Link to="/shop" className="hover:text-accent">Tees</Link></li>
+            <li><Link to="/shop" className="hover:text-accent">Accessories</Link></li>
           </ul>
         </nav>
 
