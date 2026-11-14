@@ -59,21 +59,23 @@ export function Hero() {
               width={900}
               height={1200}
               fetchPriority="high"
-              className="h-full w-full object-contain object-bottom"
+              className="h-full w-full origin-[50%_45%] scale-[1.18] object-contain object-bottom"
             />
           </motion.div>
 
-          {/* Signature element: rotating stamp, the site's recurring mark */}
-          <motion.div
-            initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
-            animate={{ opacity: 1, scale: 1, rotate: -10 }}
-            transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-            className="absolute -right-3 -top-3 flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent bg-bg text-center sm:-right-5 sm:-top-5 sm:h-28 sm:w-28"
-          >
-            <span className="font-mono text-[0.7rem] font-bold uppercase leading-tight tracking-widest2 text-accent">
-              {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
-            </span>
-          </motion.div>
+          {/* Signature element: rotating stamp, the site's recurring mark. Centred over the sample photo as a teaser. */}
+          <div className="pointer-events-none absolute inset-x-0 top-[62%] flex -translate-y-1/2 justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
+              animate={{ opacity: 1, scale: 1, rotate: -10 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
+              className="flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-36 sm:w-36"
+            >
+              <span className="max-w-[6.5rem] font-mono text-[0.8rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[0.85rem]">
+                {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
+              </span>
+            </motion.div>
+          </div>
         </div>
       </div>
 
