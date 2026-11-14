@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g fill="none" stroke="#B89687" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    /* Rose by default (dark tabs). Browsers in light mode get the darker rose
+       used for the light theme on the site, so the mark stays readable on a light tab. */
+    .mark { stroke: #B89687; }
+    @media (prefers-color-scheme: light) {
+      .mark { stroke: #705042; }
+    }
+  </style>
+  <g class="mark" fill="none" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
     <path d="M6 18.3 L25.5 45.7 L45 18.3"/>
     <path d="M19 18.3 L38.5 45.7 L58 18.3"/>
     <path d="M13.8 45.7 L32 18.3 L50.2 45.7"/>
