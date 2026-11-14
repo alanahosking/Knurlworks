@@ -59,19 +59,19 @@ export function Hero() {
               width={900}
               height={1200}
               fetchPriority="high"
-              className="h-full w-full origin-[50%_45%] scale-[1.18] object-contain object-bottom"
+              className="h-full w-full origin-[50%_45%] scale-[1.25] object-contain object-bottom"
             />
           </motion.div>
 
-          {/* Signature element: rotating stamp, the site's recurring mark. Centred over the sample photo as a teaser. */}
-          <div className="pointer-events-none absolute inset-x-0 top-[62%] flex -translate-y-1/2 justify-center">
+          {/* Signature element: rotating stamp, the site's recurring mark. Sits in the top third of the sample photo as a teaser. */}
+          <div className="pointer-events-none absolute inset-x-0 top-[18%] flex -translate-y-1/2 justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 1.4, rotate: -18 }}
               animate={{ opacity: 1, scale: 1, rotate: -10 }}
               transition={{ duration: 0.7, delay: 0.6, ease: [0.2, 0.8, 0.2, 1] }}
-              className="flex h-32 w-32 items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-36 sm:w-36"
+              className="flex h-40 w-40 items-center justify-center rounded-full border-2 border-accent bg-bg text-center shadow-lg sm:h-[11.25rem] sm:w-[11.25rem]"
             >
-              <span className="max-w-[6.5rem] font-mono text-[0.8rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[0.85rem]">
+              <span className="max-w-[8.125rem] font-mono text-[1rem] font-bold uppercase leading-tight tracking-widest2 text-accent sm:text-[1.0625rem]">
                 {SHOP_OPEN ? 'Limited Runs' : 'Coming Soon'}
               </span>
             </motion.div>
