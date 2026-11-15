@@ -188,6 +188,7 @@ export default function PrivacyPolicy() {
                 </a>
                 .
               </p>
+              <p className="mt-2 text-muted">Postal address: PO Box 1351, Epping VIC 3076</p>
             </section>
 
             <p className="border-t border-line pt-6 text-sm text-muted">

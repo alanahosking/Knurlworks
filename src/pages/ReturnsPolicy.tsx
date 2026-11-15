@@ -96,6 +96,9 @@ export default function ReturnsPolicy() {
 
             <section>
               <h2 className="font-display text-2xl">How to start a return</h2>
+              <p className="mt-4 text-muted">
+                Contact us first and we'll arrange the return. Please don't post anything back to our PO Box.
+              </p>
               <ol className="mt-4 flex flex-col gap-2 pl-5 text-muted marker:text-accent">
                 <li className="list-decimal">
                   Email{' '}
@@ -104,8 +107,8 @@ export default function ReturnsPolicy() {
                   </a>{' '}
                   with your order number, the item(s), and the reason for return
                 </li>
-                <li className="list-decimal">We'll confirm eligibility and send return instructions</li>
-                <li className="list-decimal">Post the item back in its original condition (unless faulty, see above)</li>
+                <li className="list-decimal">We'll confirm eligibility and arrange the return with you</li>
+                <li className="list-decimal">Send the item back as arranged, in its original condition (unless faulty, see above)</li>
                 <li className="list-decimal">
                   Once received and checked, we'll process your refund, replacement, or store credit within 5–10
                   business days
@@ -123,6 +126,9 @@ export default function ReturnsPolicy() {
 
             <section>
               <h2 className="font-display text-2xl">Contact</h2>
+              <p className="mt-4 text-muted">
+                Postal address: PO Box 1351, Epping VIC 3076. Please contact us before sending anything back.
+              </p>
               <p className="mt-4 text-muted">
                 Questions about an order? Reach us at{' '}
                 <a href="mailto:admin@knurlworks.com.au" className="text-accent hover:underline">

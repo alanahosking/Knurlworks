@@ -33,6 +33,8 @@ export default function Contact() {
               <Mail size={18} aria-hidden="true" />
               admin@knurlworks.com.au
             </motion.a>
+
+            <p className="mt-4 text-sm text-muted">Postal address: PO Box 1351, Epping VIC 3076</p>
           </div>
 
           <ContactForm />
