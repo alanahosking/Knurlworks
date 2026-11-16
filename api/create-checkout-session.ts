@@ -76,35 +76,42 @@ function isCheckoutLine(value: unknown): value is CheckoutLine {
  * be returned as JSON for inline display — instead we redirect back to
  * `returnTo` with a `checkout_error` query param, which CartDrawer reads
  * on mount.
+ *
+ * The param carries only a short code (see CheckoutErrorCode), never text:
+ * customers must not see internal details, and CartDrawer maps codes to
+ * fixed messages so a crafted link can't make the site display arbitrary
+ * text. The real reason is logged for Vercel's runtime logs.
  */
+type CheckoutErrorCode = 'cart' | 'unavailable';
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const body = req.body as { lines?: unknown; returnTo?: unknown } | undefined;
-  const returnTo = typeof body?.returnTo === 'string' && body.returnTo.startsWith('/') ? body.returnTo : '/';
+  const returnTo = typeof body?.returnTo === 'string' && /^\/(?![/\\])/.test(body.returnTo) ? body.returnTo : '/';
 
-  const fail = (message: string) => {
-    res.redirect(303, `${returnTo}?checkout_error=${encodeURIComponent(message)}`);
+  const fail = (code: CheckoutErrorCode, reason: string) => {
+    console.error(`checkout failed (${code}): ${reason}`);
+    res.redirect(303, `${returnTo}?checkout_error=${code}`);
   };
 
   try {
     if (req.method !== 'POST') {
       res.setHeader('Allow', 'POST');
-      return fail('Method not allowed');
+      return fail('unavailable', `method ${req.method} not allowed`);
     }
 
     const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
     if (!secretKey) {
-      console.error('STRIPE_SECRET_KEY is not set');
-      return fail('Checkout is not configured (missing STRIPE_SECRET_KEY)');
+      return fail('unavailable', 'STRIPE_SECRET_KEY is not set');
     }
 
     let rawLines: unknown;
     try {
       rawLines = typeof body?.lines === 'string' ? JSON.parse(body.lines) : undefined;
     } catch {
-      return fail('Invalid cart');
+      return fail('cart', 'cart lines are not valid JSON');
     }
     if (!Array.isArray(rawLines) || rawLines.length === 0 || !rawLines.every(isCheckoutLine)) {
-      return fail('Invalid cart');
+      return fail('cart', 'cart lines are empty or malformed');
     }
 
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
@@ -113,10 +120,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     for (const line of rawLines) {
       const product = checkoutProducts.find((p) => p.id === line.productId);
       if (!product) {
-        return fail(`Unknown product: ${line.productId}`);
+        return fail('cart', `unknown product ${line.productId}`);
       }
       if (!product.sizes.includes(line.size)) {
-        return fail(`Invalid size "${line.size}" for ${product.name}`);
+        return fail('cart', `invalid size ${line.size} for ${product.id}`);
       }
 
       subtotal += product.price * line.quantity;
@@ -126,7 +133,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           currency: 'aud',
           unit_amount: Math.round(product.price * 100),
           product_data: {
-            name: `${product.name} — ${line.size}`,
+            name: `${product.name} (${line.size})`,
           },
         },
       });
@@ -155,13 +162,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (!session.url) {
-      return fail('Could not create checkout session');
+      return fail('unavailable', 'Stripe returned a session without a URL');
     }
 
     return res.redirect(303, session.url);
   } catch (err) {
     console.error('create-checkout-session crashed', err);
-    const message = err instanceof Error ? err.message : String(err);
-    return fail(`Server error: ${message}`);
+    return fail('unavailable', err instanceof Error ? err.message : String(err));
   }
 }

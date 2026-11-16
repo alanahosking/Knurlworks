@@ -6,6 +6,15 @@ import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 
+// The checkout API only ever sends one of these codes. Anything else in the
+// URL is ignored for its own message, so a crafted link can't put its own
+// words on the page.
+const CHECKOUT_ERROR_MESSAGES: Record<string, string> = {
+  cart: "Something in your cart isn't available anymore. Remove it, add it again, then try checkout.",
+  unavailable:
+    "Checkout isn't working right now. Try again in a few minutes, or email admin@knurlworks.com.au and we'll sort it out.",
+};
+
 export function CartDrawer() {
   const { lines, isOpen, openCart, closeCart, updateQuantity, removeLine, subtotal } = useCart();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -22,7 +31,11 @@ export function CartDrawer() {
   useEffect(() => {
     const error = searchParams.get('checkout_error');
     if (error) {
-      setCheckoutError(error);
+      setCheckoutError(
+        Object.prototype.hasOwnProperty.call(CHECKOUT_ERROR_MESSAGES, error)
+          ? CHECKOUT_ERROR_MESSAGES[error]
+          : CHECKOUT_ERROR_MESSAGES.unavailable,
+      );
       openCart();
       const next = new URLSearchParams(searchParams);
       next.delete('checkout_error');
