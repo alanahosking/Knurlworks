@@ -77,7 +77,7 @@ function ShopCatalog() {
     <>
       <SEO
         title="Shop Alternative Gymwear"
-        description="Browse KnurlWorks' full catalog of heavyweight tees, hoodies, shorts and leggings for men, women, and unisex fits."
+        description="Browse KnurlWorks' full catalog of heavyweight tees, oversized pump covers, hoodies, shorts and leggings for men, women, and unisex fits."
         path="/shop"
       />
 
